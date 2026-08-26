@@ -25,7 +25,7 @@ def next_permutation(nums: list[int]) -> None:
         nums[i], nums[j] = nums[j], nums[i]
 
     # Step 4: Reverse the suffix.
-    nums[i + 1:] = reversed(nums[i + 1:])
+    nums[i + 1 :] = reversed(nums[i + 1 :])
 
 
 def main():

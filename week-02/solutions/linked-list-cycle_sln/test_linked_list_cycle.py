@@ -1,5 +1,6 @@
 from solution import ListNode, has_cycle
 
+
 def test_cycle_exists():
     # Create linked list: 3 -> 2 -> 0 -> -4 -> (points back to 2)
     head = ListNode(3)
@@ -11,14 +12,17 @@ def test_cycle_exists():
 
     assert has_cycle(head) is True
 
+
 def test_no_cycle():
     head = ListNode(1)
     head.next = ListNode(2)
     assert has_cycle(head) is False
 
+
 def test_single_node_no_cycle():
     head = ListNode(1)
     assert has_cycle(head) is False
+
 
 def test_single_node_cycle():
     head = ListNode(1)

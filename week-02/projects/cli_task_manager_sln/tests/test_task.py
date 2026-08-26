@@ -24,7 +24,7 @@ def test_task_from_dict():
         "description": "Submit assignment",
         "completed": False,
         "priority": "normal",
-        "created_at": "2026-08-26T12:00:00"
+        "created_at": "2026-08-26T12:00:00",
     }
     task = Task.from_dict(data)
     assert isinstance(task, Task)

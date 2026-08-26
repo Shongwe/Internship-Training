@@ -3,6 +3,7 @@ class ListNode:
         self.val = val
         self.next = next
 
+
 def has_cycle(head: ListNode) -> bool:
     """
     Detect if a linked list has a cycle using Floyd's Tortoise & Hare algorithm.
@@ -20,6 +21,7 @@ def has_cycle(head: ListNode) -> bool:
         fast = fast.next.next
 
     return True
+
 
 def main():
     # Test cases

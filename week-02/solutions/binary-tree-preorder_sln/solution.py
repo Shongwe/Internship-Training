@@ -4,19 +4,23 @@ class TreeNode:
         self.left = left
         self.right = right
 
+
 def preorder_traversal_recursive(root: TreeNode) -> list[int]:
     """
     Preorder traversal (root -> left -> right) using recursion.
     """
     result = []
+
     def dfs(node):
         if not node:
             return
         result.append(node.val)
         dfs(node.left)
         dfs(node.right)
+
     dfs(root)
     return result
+
 
 def preorder_traversal_iterative(root: TreeNode) -> list[int]:
     """
@@ -39,14 +43,15 @@ def preorder_traversal_iterative(root: TreeNode) -> list[int]:
 
     return result
 
+
 def main():
-    # Example usage
     root = TreeNode(1)
     root.right = TreeNode(2)
     root.right.left = TreeNode(3)
 
     print("Recursive Preorder Traversal:", preorder_traversal_recursive(root))
     print("Iterative Preorder Traversal:", preorder_traversal_iterative(root))
+
 
 if __name__ == "__main__":
     main()

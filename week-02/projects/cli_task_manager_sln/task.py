@@ -1,5 +1,7 @@
 from datetime import datetime
 
+VALID_PRIORITIES = {"low", "normal", "high"}
+
 
 class Task:
     """Represent a task in the task manager."""
@@ -13,6 +15,12 @@ class Task:
         created_at: str | None = None,
     ) -> None:
         """Initialize a task."""
+        if not description.strip():
+            raise ValueError("Task description cannot be empty.")
+
+        if priority not in VALID_PRIORITIES:
+            raise ValueError("Priority must be low, normal, or high.")
+
         self.id = id
         self.description = description
         self.completed = completed

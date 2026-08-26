@@ -19,6 +19,7 @@ def is_palindrome(s: str) -> bool:
 
     return True
 
+
 def main():
     test_cases = [
         ("A man, a plan, a canal: Panama", True),
@@ -29,8 +30,11 @@ def main():
 
     for s, expected in test_cases:
         result = is_palindrome(s)
-        assert result == expected, f"Test failed for input: {s}. Expected: {expected}, Got: {result}"
+        assert (
+            result == expected
+        ), f"Test failed for input: {s}. Expected: {expected}, Got: {result}"
         print(f"Test passed for input: {s}")
+
 
 if __name__ == "__main__":
     main()

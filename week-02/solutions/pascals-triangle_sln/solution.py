@@ -9,19 +9,13 @@ def generate(num_rows: int) -> list[list[int]]:
         A nested list containing Pascal's triangle.
     """
     result = []
-
     for i in range(num_rows):
-        row = [1]
-
-        if i > 0:
-            for j in range(1, i):
-                row.append(result[i - 1][j - 1] + result[i - 1][j])
-
-            row.append(1)
-
+        row = [1] * (i + 1)
+        for j in range(1, i):
+            row[j] = result[i - 1][j - 1] + result[i - 1][j]
         result.append(row)
-
     return result
+
 
 def test_generate():
     assert generate(0) == []
@@ -34,11 +28,13 @@ def test_generate():
         [1, 4, 6, 4, 1],
     ]
 
+
 def main():
     num_rows = 5
     triangle = generate(num_rows)
     for row in triangle:
         print(row)
+
 
 if __name__ == "__main__":
     main()
