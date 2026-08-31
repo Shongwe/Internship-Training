@@ -7,12 +7,6 @@ from solution import (
 
 
 def build_test_tree():
-    # Tree: [1,null,2,3]
-    #     1
-    #      \
-    #       2
-    #      /
-    #     3
     root = TreeNode(1)
     root.right = TreeNode(2)
     root.right.left = TreeNode(3)
@@ -41,12 +35,6 @@ def test_single_node():
 
 
 def build_large_tree():
-    # Balanced tree with 7 nodes
-    #         1
-    #       /   \
-    #      2     3
-    #     / \   / \
-    #    4   5 6   7
     root = TreeNode(1)
     root.left = TreeNode(2)
     root.right = TreeNode(3)
