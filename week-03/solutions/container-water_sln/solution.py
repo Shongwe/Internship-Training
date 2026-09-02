@@ -27,11 +27,13 @@ def maxArea(height: list[int]) -> int:
 
     return max_area
 
+
 def main():
     # Test cases
-    print(maxArea([1,8,6,2,5,4,8,3,7]))  # Expected 49
-    print(maxArea([1,1]))                # Expected 1
-    print(maxArea([4,3,2,1,4]))          # Expected 16
+    print(maxArea([1, 8, 6, 2, 5, 4, 8, 3, 7]))  # Expected 49
+    print(maxArea([1, 1]))  # Expected 1
+    print(maxArea([4, 3, 2, 1, 4]))  # Expected 16
+
 
 if __name__ == "__main__":
     main()

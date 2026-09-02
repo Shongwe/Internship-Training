@@ -1,5 +1,6 @@
 from pydantic import BaseModel, Field, field_validator
 
+
 class ItemCreate(BaseModel):
     name: str = Field(..., min_length=1, max_length=100)
     description: str | None = Field(default="", max_length=500)

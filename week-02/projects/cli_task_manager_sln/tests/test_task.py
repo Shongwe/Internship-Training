@@ -1,4 +1,3 @@
-import pytest
 from cli_task_manager_sln.task import Task
 
 

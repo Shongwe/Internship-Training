@@ -1,6 +1,7 @@
 import json
 from models import Item
 
+
 class ItemStorage:
     def __init__(self, filename: str = "data.json"):
         self.filename = filename

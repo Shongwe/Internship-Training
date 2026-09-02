@@ -1,9 +1,11 @@
 from solution import intToRoman
 
+
 def test_examples():
     assert intToRoman(3) == "III"
     assert intToRoman(58) == "LVIII"
     assert intToRoman(1994) == "MCMXCIV"
+
 
 def test_edge_cases():
     assert intToRoman(1) == "I"

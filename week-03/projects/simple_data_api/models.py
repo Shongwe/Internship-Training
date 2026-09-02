@@ -1,4 +1,14 @@
 from datetime import datetime, UTC
+from typing import TypedDict
+
+
+class ItemDict(TypedDict):
+    id: int
+    name: str
+    description: str
+    price: float
+    created_at: str
+
 
 class Item:
     def __init__(self, id: int, name: str, description: str, price: float):
@@ -8,7 +18,8 @@ class Item:
         self.price = price
         self.created_at = datetime.now(UTC).isoformat()
 
-    def to_dict(self) -> dict:
+    def to_dict(self) -> ItemDict:
+        """Convert the Item instance into a dictionary."""
         return {
             "id": self.id,
             "name": self.name,
@@ -18,7 +29,8 @@ class Item:
         }
 
     @classmethod
-    def from_dict(cls, data: dict) -> "Item":
+    def from_dict(cls, data: ItemDict) -> "Item":
+        """Create an Item instance from a dictionary."""
         return cls(
             id=data["id"],
             name=data["name"],
