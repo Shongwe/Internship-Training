@@ -3,11 +3,11 @@ from pydantic import BaseModel, Field, field_validator
 
 class ItemCreate(BaseModel):
     name: str = Field(..., min_length=1, max_length=100)
-    description: str | None = Field(default="", max_length=500)
+    description: str = Field(default="", max_length=500)
     price: float = Field(..., gt=0)
 
     @field_validator("name")
-    def name_must_not_be_blank(cls, v):
+    def name_must_not_be_blank(cls, v: str) -> str:
         if not v.strip():
             raise ValueError("Name must not be blank")
         return v
@@ -19,7 +19,7 @@ class ItemUpdate(BaseModel):
     price: float | None = Field(None, gt=0)
 
     @field_validator("name")
-    def name_must_not_be_blank(cls, v):
+    def name_must_not_be_blank(cls, v: str | None) -> str | None:
         if v is not None and not v.strip():
             raise ValueError("Name must not be blank")
         return v

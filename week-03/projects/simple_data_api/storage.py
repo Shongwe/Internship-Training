@@ -1,5 +1,6 @@
 import json
-from models import Item
+from typing import Optional
+from simple_data_api.models import Item
 
 
 class ItemStorage:
@@ -33,13 +34,19 @@ class ItemStorage:
     def list_all(self) -> list[Item]:
         return self.items
 
-    def update(self, item_id: int, **kwargs) -> Item | None:
+    def update(self, item_id: int, name: Optional[str] = None, description: Optional[str] = None, price: Optional[float] = None) -> Item | None:
         item = self.read(item_id)
         if not item:
             return None
-        for key, value in kwargs.items():
-            if hasattr(item, key):
-                setattr(item, key, value)
+        updates: dict[str, str | float] = {}
+        if name is not None:
+            updates["name"] = name
+        if description is not None:
+            updates["description"] = description
+        if price is not None:
+            updates["price"] = price
+        for key, value in updates.items():
+            setattr(item, key, value)
         self.save()
         return item
 
