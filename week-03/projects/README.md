@@ -25,9 +25,9 @@ simple_data_api/
 ├── data.json             # Persistent data file
 │
 └── tests/                # Test suite
-├── test_api.py           # API integration tests
-├── test_models.py        # Model conversion tests
-└── test_validators.py    #Validator rule tests
+    ├── test_api.py           # API integration tests
+    ├── test_models.py        # Model conversion tests
+    └── test_validators.py    #Validator rule tests
 
 
 ## Testing
@@ -36,7 +36,7 @@ pip install -r requirements.txt
 
 
 ## Running the API
-uvicorn app:app --reload
+in the projects folder : uvicorn simple_data_api.app:app --reload
 
 http://127.0.0.1:8000/docs #swagger
 

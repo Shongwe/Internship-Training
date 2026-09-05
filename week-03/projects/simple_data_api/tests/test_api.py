@@ -32,8 +32,12 @@ def test_delete_item():
 
 
 def test_list_items():
-    client.post("/api/items", json={"name": "Item1", "description": "Desc1", "price": 10})
-    client.post("/api/items", json={"name": "Item2", "description": "Desc2", "price": 20})
+    client.post(
+        "/api/items", json={"name": "Item1", "description": "Desc1", "price": 10}
+    )
+    client.post(
+        "/api/items", json={"name": "Item2", "description": "Desc2", "price": 20}
+    )
     response = client.get("/api/items")
     assert response.status_code == 200
     data = response.json()
@@ -42,7 +46,6 @@ def test_list_items():
     assert "Item1" in names
     assert "Item2" in names
     assert data["total"] >= 2
-
 
 
 def test_update_item():
@@ -90,3 +93,61 @@ def test_multiple_items_id_increment():
         "/api/items", json={"name": "Second", "description": "Two", "price": 2}
     )
     assert r2.json()["id"] == r1.json()["id"] + 1
+
+
+def test_search_items():
+    client.post(
+        "/api/items",
+        json={"name": "Python Book", "description": "Learn Python", "price": 30},
+    )
+    client.post(
+        "/api/items",
+        json={"name": "Web Dev Course", "description": "Learn FastAPI", "price": 50},
+    )
+    response = client.get("/api/items?search=Python")
+    assert response.status_code == 200
+    data = response.json()
+    assert any("Python Book" == i["name"] for i in data["items"])
+
+
+def test_filter_items_by_price():
+    client.post(
+        "/api/items", json={"name": "Cheap Item", "description": "Budget", "price": 5}
+    )
+    client.post(
+        "/api/items",
+        json={"name": "Expensive Item", "description": "Premium", "price": 100},
+    )
+    response = client.get("/api/items?price_min=10&price_max=60")
+    assert response.status_code == 200
+    data = response.json()
+    assert all(10 <= i["price"] <= 60 for i in data["items"])
+
+
+def test_pagination():
+    for i in range(1, 6):
+        client.post(
+            "/api/items", json={"name": f"Item{i}", "description": "Test", "price": i}
+        )
+    response = client.get("/api/items?page=1&limit=2")
+    assert response.status_code == 200
+    data = response.json()
+    assert len(data["items"]) == 2
+
+
+def test_sorting_descending_price():
+    client.post("/api/items", json={"name": "A", "description": "First", "price": 10})
+    client.post("/api/items", json={"name": "B", "description": "Second", "price": 20})
+    response = client.get("/api/items?sort=price&order=desc")
+    assert response.status_code == 200
+    data = response.json()
+    prices = [i["price"] for i in data["items"]]
+    assert prices == sorted(prices, reverse=True)
+
+
+def test_structured_error_response():
+    response = client.get("/api/items/999")
+    assert response.status_code == 404
+    data = response.json()
+    assert data["status"] == "error"
+    assert data["error"]["code"] == "ITEM_NOT_FOUND"

@@ -1,6 +1,7 @@
 from simple_data_api.models import Item, ItemDict
 
-def test_item_to_dict()-> None:
+
+def test_item_to_dict() -> None:
     item = Item(1, "Book", "Novel", 10.0)
     data = item.to_dict()
     assert data["id"] == 1
@@ -8,7 +9,7 @@ def test_item_to_dict()-> None:
     assert "created_at" in data
 
 
-def test_item_from_dict()-> None:
+def test_item_from_dict() -> None:
     data: ItemDict = {
         "id": 2,
         "name": "Pen",

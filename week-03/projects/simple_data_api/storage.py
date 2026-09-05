@@ -1,13 +1,16 @@
 import json
+import os
 from typing import Optional
 from simple_data_api.models import Item
 
 
 class ItemStorage:
-    def __init__(self, filename: str = "data.json"):
-        self.filename = filename
+    def __init__(self, filename: Optional[str] = None):
+        base_dir = os.path.dirname(__file__)
+        self.filename = filename or os.path.join(base_dir, "data.json")
         self.items = self.load()
         self.next_id = max([i.id for i in self.items], default=0) + 1
+
 
     def load(self) -> list[Item]:
         try:
@@ -34,7 +37,13 @@ class ItemStorage:
     def list_all(self) -> list[Item]:
         return self.items
 
-    def update(self, item_id: int, name: Optional[str] = None, description: Optional[str] = None, price: Optional[float] = None) -> Item | None:
+    def update(
+        self,
+        item_id: int,
+        name: Optional[str] = None,
+        description: Optional[str] = None,
+        price: Optional[float] = None,
+    ) -> Item | None:
         item = self.read(item_id)
         if not item:
             return None
