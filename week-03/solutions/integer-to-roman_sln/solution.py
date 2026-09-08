@@ -1,8 +1,3 @@
-# solution.py
-# Exercise 2: Integer to Roman
-# Difficulty: Medium | Topics: String Building, Patterns
-
-
 def intToRoman(num: int) -> str:
     """
     Convert an integer to its Roman numeral representation.
@@ -13,7 +8,6 @@ def intToRoman(num: int) -> str:
     Returns:
         str: Roman numeral string.
     """
-    # Mapping includes subtractive cases
     values = [
         (1000, "M"),
         (900, "CM"),
@@ -40,7 +34,7 @@ def intToRoman(num: int) -> str:
     return result
 
 
-def main():
+def main() -> None:
     print(intToRoman(3))  # Expected "III"
     print(intToRoman(58))  # Expected "LVIII"
     print(intToRoman(1994))  # Expected "MCMXCIV"

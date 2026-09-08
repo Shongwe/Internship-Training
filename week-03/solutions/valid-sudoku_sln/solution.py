@@ -36,7 +36,7 @@ def isValidSudoku(board: list[list[str]]) -> bool:
     return True
 
 
-def main():
+def main() -> None:
     board = [
         ["5", "3", ".", ".", "7", ".", ".", ".", "."],
         ["6", ".", ".", "1", "9", "5", ".", ".", "."],

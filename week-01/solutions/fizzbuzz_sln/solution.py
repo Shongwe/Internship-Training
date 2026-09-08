@@ -1,4 +1,7 @@
-def fizzbuzz(n: int) -> list[str]:
+from typing import List
+
+
+def fizzbuzz(n: int) -> List[str]:
     """
     Generate the FizzBuzz sequence from 1 to n.
 
@@ -8,7 +11,7 @@ def fizzbuzz(n: int) -> list[str]:
     Returns:
         A list of strings representing the FizzBuzz sequence.
     """
-    answer = []
+    answer: List[str] = []
 
     for i in range(1, n + 1):
         if i % 3 == 0 and i % 5 == 0:
@@ -41,7 +44,7 @@ def fizzbuzz_print(n: int) -> None:
             print(i)
 
 
-def fizzbuzz_mapped(n: int) -> list[str]:
+def fizzbuzz_mapped(n: int) -> List[str]:
     """
     Generate the FizzBuzz sequence using a dictionary mapping.
 
@@ -57,8 +60,7 @@ def fizzbuzz_mapped(n: int) -> list[str]:
         7: "Zazz",
     }
 
-    answer = []
-
+    answer: List[str] = []
     for i in range(1, n + 1):
         result = ""
 
